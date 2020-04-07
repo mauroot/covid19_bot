@@ -4,6 +4,37 @@ import matplotlib.pyplot as plt
 from flask import Flask, request
 
 DATA_URL = f'{os.environ["DATA_SOURCE"]}'   # add your data source as heroku environment variable
+GRAPH_URL = f'{os.environ["DATA_GRAPH"]}'   # add your data source as heroku environment variable
+
+def covid_graph(country="PY"):
+    date_end = datetime.today().strftime('%Y-%m-%d')
+    date_start = datetime.today().replace(day=1).strftime('%Y-%m-%d')
+    response = requests.get(GRAPH_URL + country + '&startDate='+ date_start +'&endDate='+ date_end).json()
+    x_list = list()
+    y_list = list()
+    for i in response:
+        dato_x = (datetime.strptime(i["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ").day)
+        x_list.append(dato_x)
+        dato_y = i["total_confirmed"]
+        y_list.append(dato_y)
+
+    print('aca x:',x_list)
+    print('aca y:',y_list)
+
+    # plotting the points 
+    plt.plot(x_list, y_list) 
+
+    # naming the x axis 
+    plt.xlabel('x - days of month') 
+    # naming the y axis 
+    plt.ylabel('y - positive cases') 
+
+    # giving a title to my graph 
+    plt.title('COVID19 progress for '+ country) 
+
+    # function to show the plot 
+    #plt.show()
+    plt.savefig('stats.png')
 
 #get report status covid19 by country code
 def get_covid19_stats(country="py"):
