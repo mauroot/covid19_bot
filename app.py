@@ -2,7 +2,7 @@ import requests
 import os
 from datetime import datetime
 from flask import Flask, request
-from monbot import get_covid19_stats, get_covid19_global, get_covid19_contry_code
+from monbot import get_covid19_stats, get_covid19_global, get_covid19_contry_code, covid_graph
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/' 
 
@@ -36,6 +36,7 @@ def main():
     elif message.upper() in country_check:
         stats = get_covid19_stats(message.upper())
         message_send = "*The stats for " + stats["country"] + " is:*\n" + sick_confirm + " Total confirmed cases: *"+ str(f'{stats["totalConfirmed"]:,}').replace(',', '.') + "*\n" + death_total + " Total Deaths: *" + str(f'{stats["totalDeaths"]:,}').replace(',', '.') + "*\n" + recovered + " Total Recovered: *" + str(f'{stats["totalRecovered"]:,}').replace(',', '.') + "*\n" + sick_active + " Active Cases: *" + str(f'{stats["activeCases"]:,}').replace(',', '.') + "*\n" + sick_dialy + " Daily Confirmed: *" + str(f'{stats["dailyConfirmed"]:,}').replace(',', '.') + "*\n" + death_dialy + " Daily Deaths: *" + str(f'{stats["dailyDeaths"]:,}').replace(',', '.') + "*\n" + updated + " Updated: " + str(datetime.strptime(stats["lastUpdated"], "%Y-%m-%dT%H:%M:%S.%fZ").date()) + " " + str(datetime.strptime(stats["lastUpdated"], "%Y-%m-%dT%H:%M:%S.%fZ").time())
+        covid_graph(message.upper())
     else:
         message_send = "Sorry not understand what you say, try again a country code like 'py' for Paraguay"
 
