@@ -1,5 +1,6 @@
 import requests  
 import os
+import matplotlib.pyplot as plt
 from flask import Flask, request
 
 DATA_URL = f'{os.environ["DATA_SOURCE"]}'   # add your data source as heroku environment variable
