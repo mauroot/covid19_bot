@@ -11,8 +11,8 @@ def covid_graph(country="PY"):
     date_end = datetime.today().strftime('%Y-%m-%d')
     date_start = datetime.today().replace(day=1).strftime('%Y-%m-%d')
     response = requests.get(GRAPH_URL + country + '&startDate='+ date_start +'&endDate='+ date_end).json()
-    x_list = list()
-    y_list = list()
+    x_list = []
+    y_list = []
     for i in response:
         dato_x = (datetime.strptime(i["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ").day)
         x_list.append(dato_x)
