@@ -37,6 +37,7 @@ def covid_graph(country="PY"):
     #plt.show()
     #plt.savefig('stats.png')
     strFile = "./stats.png"
+    print(os.path.isfile(strFile))
     if os.path.isfile(strFile):
         os.remove(strFile)   #Option: os.system("rm "+strFile)
     plt.savefig(strFile)
