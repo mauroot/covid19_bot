@@ -40,7 +40,7 @@ def main():
         json_graph = {
             "chat_id": chat_id,
             "photo" : graph,
-            "caption" : "Graph Stats for Positive Cases",
+            "caption" : "Graph Stats for Positive Cases in current month",
         }
     else:
         message_send = "Sorry not understand what you say, try again a country code like 'py' for Paraguay"
