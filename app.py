@@ -6,7 +6,7 @@ from monbot import get_covid19_stats, get_covid19_global, get_covid19_contry_cod
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/' 
 
-app = Flask(__name__,static_url_path='', static_folder='img')
+app = Flask(__name__,static_url_path='/static')
 
 @app.route('/', methods=['POST'])
    
