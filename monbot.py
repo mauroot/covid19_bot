@@ -33,7 +33,7 @@ def covid_graph(country="PY"):
     plt.ylabel('y - positive cases') 
 
     # giving a title to my graph 
-    plt.title('COVID19 progress for '+ country) 
+    plt.title('COVID19 progress for '+ response[0][country]) 
 
     # function to show the plot 
     #plt.show()
