@@ -48,7 +48,7 @@ def main():
 
     json_graph = {
         "chat_id": chat_id,
-        "photo" : graph,
+        "photo" : "https://telegram.org/img/t_logo.png", #graph,
         "caption" : "Graph Stats for Positive Cases",
     }                                                                                                                          
 
