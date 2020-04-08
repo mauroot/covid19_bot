@@ -42,9 +42,6 @@ def main():
             "photo" : graph,
             "caption" : "Graph Stats for Positive Cases",
         }
-
-        photo_url = BOT_URL + 'sendPhoto'
-        requests.post(photo_url, json=json_graph)
     else:
         message_send = "Sorry not understand what you say, try again a country code like 'py' for Paraguay"
 
@@ -56,6 +53,10 @@ def main():
 
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
+
+   if json_graph:
+        photo_url = BOT_URL + 'sendPhoto'
+        requests.post(photo_url, json=json_graph)
     
     return ''
 
