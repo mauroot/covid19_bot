@@ -42,8 +42,10 @@ def covid_graph(country="PY"):
     graphFile = SEND_GRAPH_URL + strFile
     print(graphFile)
     
-    if os.path.exists(strFile):
-        os.remove(strFile)
+    try:
+        os.remove(os.path.join(os.path.dirname(__file__), ('/' + strFile)))
+    except:
+        pass
         
     plt.savefig(strFile)
     return graphFile
