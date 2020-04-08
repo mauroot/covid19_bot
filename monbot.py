@@ -46,7 +46,7 @@ def covid_graph(country="PY"):
         os.remove(os.path.join(os.path.dirname(__file__), ('/' + strFile)))
     except:
         pass
-        
+    plt.clf()    
     plt.savefig(strFile)
     return graphFile
 
