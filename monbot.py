@@ -1,4 +1,5 @@
 import requests  
+import app.app
 import os
 import matplotlib.pyplot as plt
 from datetime import datetime
