@@ -6,6 +6,7 @@ from flask import Flask, request
 
 DATA_URL = f'{os.environ["DATA_SOURCE"]}'   # add your data source as heroku environment variable
 GRAPH_URL = f'{os.environ["DATA_GRAPH"]}'   # add your data source as heroku environment variable
+SEND_GRAPH_URL = f'{os.environ["SEND_GRAPH"]}'   # add your data source as heroku environment variable
 
 def covid_graph(country="PY"):
     date_end = datetime.today().strftime('%Y-%m-%d')
@@ -37,8 +38,8 @@ def covid_graph(country="PY"):
     #plt.show()
     #plt.savefig('stats.png')
     strFile = "static/stats.png"
-    #strFile = os.path.join(os.path.dirname(__file__), 'stats.png')
-    graphFile = os.path.dirname(os.path.abspath(__file__)) +'/'+ strFile
+    #strFile = os.path.join(os.path.dirname(__file__), 'stats.png') \\ os.path.dirname(os.path.abspath(__file__))
+    graphFile = SEND_GRAPH_URL + strFile
     print(graphFile)
     
     if os.path.isfile(strFile):
