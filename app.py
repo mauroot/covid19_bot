@@ -48,15 +48,15 @@ def main():
 
     json_graph = {
         "chat_id": chat_id,
-        "photo" = graph,
-        "caption" = "Graph Stats for Positive Cases",
+        "photo" : graph,
+        "caption" : "Graph Stats for Positive Cases",
     }                                                                                                                          
 
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
 
-    #photo_url = BOT_URL + 'sendPhoto'
-    #requests.post(photo_url, json=json_graph)
+    photo_url = BOT_URL + 'sendPhoto'
+    requests.post(photo_url, json=json_graph)
     
     return ''
 
