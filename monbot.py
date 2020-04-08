@@ -9,6 +9,7 @@ GRAPH_URL = f'{os.environ["DATA_GRAPH"]}'   # add your data source as heroku env
 SEND_GRAPH_URL = f'{os.environ["SEND_GRAPH"]}'   # add your data source as heroku environment variable
 
 def covid_graph(country="PY"):
+    plt.clf()    
     date_end = datetime.today().strftime('%Y-%m-%d')
     date_start = datetime.today().replace(day=1).strftime('%Y-%m-%d')
     response = requests.get(GRAPH_URL + country + '&startDate='+ date_start +'&endDate='+ date_end).json()
@@ -46,7 +47,7 @@ def covid_graph(country="PY"):
         os.remove(os.path.join(os.path.dirname(__file__), ('/' + strFile)))
     except:
         pass
-    plt.clf()    
+    
     plt.savefig(strFile)
     return graphFile
 
