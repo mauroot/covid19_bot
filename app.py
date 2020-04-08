@@ -56,7 +56,7 @@ def main():
     requests.post(message_url, json=json_data)
 
     photo_url = BOT_URL + 'sendPhoto'
-    requests.post(photo_url, json=json_graph)
+    #requests.post(photo_url, json=json_graph)
     
     return ''
 
