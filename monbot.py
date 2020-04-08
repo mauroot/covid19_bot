@@ -35,7 +35,11 @@ def covid_graph(country="PY"):
 
     # function to show the plot 
     #plt.show()
-    plt.savefig('stats.png')
+    #plt.savefig('stats.png')
+    strFile = "stats.png"
+    if os.path.isfile(strFile):
+        os.remove(strFile)   #Option: os.system("rm "+strFile)
+    plt.savefig(strFile)
 
 #get report status covid19 by country code
 def get_covid19_stats(country="py"):
