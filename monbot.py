@@ -37,7 +37,7 @@ def covid_graph(country="PY"):
     # function to show the plot 
     #plt.show()
     #plt.savefig('stats.png')
-    strFile = "static/stats.png"
+    strFile = "static/"+datetime.today().strftime("%Y%m%d-%H%M%S")+".png"
     #strFile = os.path.join(os.path.dirname(__file__), 'stats.png') \\ os.path.dirname(os.path.abspath(__file__))
     graphFile = SEND_GRAPH_URL + strFile
     print(graphFile)
