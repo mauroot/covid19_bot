@@ -1,5 +1,4 @@
 import requests  
-import app.app
 import os
 import matplotlib.pyplot as plt
 from datetime import datetime
@@ -37,8 +36,8 @@ def covid_graph(country="PY"):
     # function to show the plot 
     #plt.show()
     #plt.savefig('stats.png')
-    #strFile = "./stats.png"
-    strFile = os.path.join(app.instance_path, './', 'stats.png')
+    strFile = "/app/stats.png"
+    #strFile = os.path.join(app.instance_path, './', 'stats.png')
     
     if os.path.isfile(strFile):
         os.remove(strFile)   #Option: os.system("rm "+strFile)
