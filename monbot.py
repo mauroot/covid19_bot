@@ -40,6 +40,7 @@ def covid_graph(country="PY"):
     if os.path.isfile(strFile):
         os.remove(strFile)   #Option: os.system("rm "+strFile)
     plt.savefig(strFile)
+    return strFile
 
 #get report status covid19 by country code
 def get_covid19_stats(country="py"):
