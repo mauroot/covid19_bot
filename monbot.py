@@ -47,7 +47,7 @@ def covid_graph(country="PY"):
 
     #enable and position legend
     plt.legend() 
-    plt.legend(prop={'loc='upper left')   
+    plt.legend(loc='upper left')   
     
     # naming the x axis 
     plt.xlabel('x - days of month') 
