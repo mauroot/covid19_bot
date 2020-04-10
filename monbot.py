@@ -8,6 +8,9 @@ DATA_URL = f'{os.environ["DATA_SOURCE"]}'   # add your data source as heroku env
 GRAPH_URL = f'{os.environ["DATA_GRAPH"]}'   # add your data source as heroku environment variable
 SEND_GRAPH_URL = f'{os.environ["SEND_GRAPH"]}'   # add your data source as heroku environment variable
 
+def y_formatter(y, pos):
+    return str(f'{int(y):,}').replace(',', '.')
+
 def covid_graph(country="PY"):
     plt.clf()    
     date_end = datetime.today().strftime('%Y-%m-%d')
