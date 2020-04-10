@@ -28,6 +28,9 @@ def covid_graph(country="PY"):
         dato_y2 = i["total_deaths"]
         death_list.append(dato_y2)
         
+    y_group = [death_list,confirm_list]
+    plt.style.use('dark_background')
+        
     ax = plt.gca()
     locator = mdates.DayLocator()
     ax.yaxis.grid(alpha=0.2)
@@ -36,8 +39,9 @@ def covid_graph(country="PY"):
     ax.yaxis.set_major_locator(plt.MaxNLocator(20))
     
     # plotting the points 
-    plt.plot(days_list, confirm_list,'k', color='blue',label=y_formatter(max(confirm_list),0)+' '+'Positives') 
-    plt.plot(days_list, death_list,'k', color='red', label=y_formatter(max(death_list),0)+' '+'Deaths') 
+    #plt.plot(days_list, confirm_list,'k', color='blue',label=y_formatter(max(confirm_list),0)+' '+'Positives') 
+    #plt.plot(days_list, death_list,'k', color='red', label=y_formatter(max(death_list),0)+' '+'Deaths') 
+    plt.stackplot(days_list,y_group, labels=[y_formatter(max(death_list),0)+' '+'Deaths',y_formatter(max(confirm_list),0)+' '+'Positives'], colors=['#EB1B4C','blue'], alpha=0.8 )
 
     plt.xticks(days_list,rotation=75,fontsize=8)
 
@@ -65,7 +69,9 @@ def covid_graph(country="PY"):
                 os.unlink(file_path)
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
-
+    for spine in plt.gca().spines.values():
+       spine.set_visible(False)
+    
     plt.tight_layout()
     plt.savefig(strFile)
     return graphFile
