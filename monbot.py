@@ -45,7 +45,9 @@ def covid_graph(country="PY"):
 
     plt.xticks(days_list,rotation=75,fontsize=8)
 
-    plt.legend()    
+    #enable and position legend
+    plt.legend() 
+    plt.legend(prop={'loc='upper left')   
     
     # naming the x axis 
     plt.xlabel('x - days of month') 
@@ -54,7 +56,7 @@ def covid_graph(country="PY"):
 
     # giving a title to my graph 
     plt.title('COVID19 progress for '+ response[0]['country']) 
-
+    
     # function to show the plot 
     #plt.show()
     strFile = "static/"+datetime.today().strftime("%Y%m%d-%H%M%S")+".png"
