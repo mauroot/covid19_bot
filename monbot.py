@@ -50,9 +50,9 @@ def covid_graph(country="PY"):
     plt.legend(loc='upper left')   
     
     # naming the x axis 
-    plt.xlabel('x - days of month') 
+    plt.xlabel('x - Days') 
     # naming the y axis 
-    plt.ylabel('y - positive cases') 
+    plt.ylabel('y - Persons') 
 
     # giving a title to my graph 
     plt.title('COVID19 progress for '+ response[0]['country']) 
