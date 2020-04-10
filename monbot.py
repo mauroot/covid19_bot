@@ -14,22 +14,34 @@ def y_formatter(y, pos):
 def covid_graph(country="PY"):
     plt.clf()    
     date_end = datetime.today().strftime('%Y-%m-%d')
-    date_start = datetime.today().replace(day=1).strftime('%Y-%m-%d')
+    date_start = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
     response = requests.get(GRAPH_URL + country + '&startDate='+ date_start +'&endDate='+ date_end).json()
-    x_list = []
-    y_list = []
+    days_list = list()
+    confirm_list = list()
+    death_list = list()
     for i in response:
-        dato_x = (datetime.strptime(i["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ").day)
-        x_list.append(dato_x)
-        dato_y = i["total_confirmed"]
-        y_list.append(dato_y)
-
-    print('aca x:',x_list)
-    print('aca y:',y_list)
-
+        dato_x = (str((datetime.strptime(i["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ").day))+"-"+str((datetime.strptime(i["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%b"))))
+        days_list.append(dato_x)
+        dato_y1 = i["total_confirmed"]
+        confirm_list.append(dato_y1)
+        dato_y2 = i["total_deaths"]
+        death_list.append(dato_y2)
+        
+    ax = plt.gca()
+    locator = mdates.DayLocator()
+    ax.yaxis.grid(alpha=0.2)
+    ax.xaxis.set_major_locator(locator)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(y_formatter))
+    ax.yaxis.set_major_locator(plt.MaxNLocator(20))
+    
     # plotting the points 
-    plt.plot(x_list, y_list) 
+    plt.plot(days_list, confirm_list,'k', color='blue',label=y_formatter(max(confirm_list),0)+' '+'Positives') 
+    plt.plot(days_list, death_list,'k', color='red', label=y_formatter(max(death_list),0)+' '+'Deaths') 
 
+    plt.xticks(days_list,rotation=75,fontsize=8)
+
+    plt.legend()    
+    
     # naming the x axis 
     plt.xlabel('x - days of month') 
     # naming the y axis 
@@ -40,9 +52,7 @@ def covid_graph(country="PY"):
 
     # function to show the plot 
     #plt.show()
-    #plt.savefig('stats.png')
     strFile = "static/"+datetime.today().strftime("%Y%m%d-%H%M%S")+".png"
-    #strFile = os.path.join(os.path.dirname(__file__), 'stats.png') \\ os.path.dirname(os.path.abspath(__file__))
     graphFile = SEND_GRAPH_URL + strFile
     print(graphFile)
     
@@ -54,7 +64,8 @@ def covid_graph(country="PY"):
                 os.unlink(file_path)
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
-    
+
+    plt.tight_layout()
     plt.savefig(strFile)
     return graphFile
 
