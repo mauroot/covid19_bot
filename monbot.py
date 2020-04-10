@@ -36,7 +36,7 @@ def covid_graph(country="PY"):
     ax.yaxis.grid(alpha=0.2)
     ax.xaxis.set_major_locator(locator)
     ax.yaxis.set_major_formatter(plt.FuncFormatter(y_formatter))
-    ax.yaxis.set_major_locator(plt.MaxNLocator(20))
+    ax.yaxis.set_major_locator(plt.MaxNLocator(10))
     
     # plotting the points 
     #plt.plot(days_list, confirm_list,'k', color='blue',label=y_formatter(max(confirm_list),0)+' '+'Positives') 
