@@ -14,8 +14,8 @@ def y_formatter(y, pos):
 
 def covid_graph(country="PY"):
     plt.clf()    
-    #date_end = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
-    date_end = datetime.today().strftime('%Y-%m-%d')
+    date_end = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+    #date_end = datetime.today().strftime('%Y-%m-%d')
     date_start = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
     response = requests.get(GRAPH_URL + country + '&startDate='+ date_start +'&endDate='+ date_end).json()
     days_list = list()
