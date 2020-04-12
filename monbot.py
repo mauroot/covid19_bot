@@ -42,10 +42,10 @@ def covid_graph(country="PY"):
     ax.yaxis.set_major_formatter(plt.FuncFormatter(y_formatter))
     ax.yaxis.set_major_locator(plt.MaxNLocator(10))
     
-    # plotting the points 
-    plt.plot(days_list, recovered_list,'k',linewidth=0, color='#ADE900', label=y_formatter(max(recovered_list),0)+' '+'Recovered', alpha=0.8) 
-    plt.plot(days_list, confirm_list,'k', linewidth=0, color='blue', label=y_formatter(max(confirm_list),0)+' '+'Positives', alpha=0.8) 
-    plt.plot(days_list, death_list,'k', linewidth=0, color='#EB1B4C', label=y_formatter(max(death_list),0)+' '+'Deaths', alpha=0.8) 
+    # plotting the points #plotting 
+    #plt.plot(days_list, recovered_list,'k',linewidth=0, color='#ADE900', label=y_formatter(max(recovered_list),0)+' '+'Recovered', alpha=0.8) 
+    #plt.plot(days_list, confirm_list,'k', linewidth=0, color='blue', label=y_formatter(max(confirm_list),0)+' '+'Positives', alpha=0.8) 
+    #plt.plot(days_list, death_list,'k', linewidth=0, color='#EB1B4C', label=y_formatter(max(death_list),0)+' '+'Deaths', alpha=0.8) 
     #plt.stackplot(days_list,y_group, labels=[y_formatter(max(death_list),0)+' '+'Deaths',y_formatter(max(confirm_list),0)+' '+'Positives'], colors=['#EB1B4C','blue'], alpha=0.8 )
 
     #plt.fill_between(days_list, confirm_list, color='blue',alpha=0.8)
@@ -54,9 +54,10 @@ def covid_graph(country="PY"):
     
     plt.xticks(days_list,rotation=75,fontsize=8)
     
-    #alpha = 1.0
+    #alpha = 1.0 #optional for set autodecrement alpha property
     for layer in sorted([(max(recovered_list),"recovered_list","#ADE900"),(max(confirm_list),"confirm_list","blue"),(max(death_list),"death_list","#EB1B4C")], reverse=True):
-    #    alpha-=0.13
+    #    alpha-=0.13 #decrement alpha property
+        plt.plot(days_list, eval(layer[1]),'k',linewidth=0, color=layer[2], label=y_formatter(max(eval(layer[1])),0)+' '+layer[3], alpha=0.8)     
         plt.fill_between(days_list, eval(layer[1]), color=layer[2],alpha=0.8)
 
     #enable and position legend
