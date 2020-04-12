@@ -51,9 +51,7 @@ def covid_graph(country="PY"):
     #plt.fill_between(days_list, confirm_list, color='blue',alpha=0.8)
     #plt.fill_between(days_list, death_list, color='#EB1B4C',alpha=0.8)
     #plt.fill_between(days_list, recovered_list, color='green',alpha=0.8)
-    
-    plt.xticks(days_list,rotation=75,fontsize=8)
-    
+       
     #alpha = 1.0 #optional for set autodecrement alpha property
     # plotting the points auto sort mode
     for layer in sorted([(max(recovered_list),"recovered_list","#ADE900","Recovered"),(max(confirm_list),"confirm_list","blue","Positives"),(max(death_list),"death_list","#EB1B4C","Deaths")], reverse=True):
@@ -70,7 +68,7 @@ def covid_graph(country="PY"):
     # bulk-set the properties of all lines and texts
     plt.setp(leg_lines, linewidth=6)
     plt.setp(leg_texts, fontsize='medium')
-    #plt.legend(loc='upper left')   
+    plt.xticks(days_list,rotation=75,fontsize=8)
     
     # naming the x axis 
     plt.xlabel('x - Days') 
