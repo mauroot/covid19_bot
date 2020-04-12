@@ -40,14 +40,24 @@ def covid_graph(country="PY"):
     ax.yaxis.set_major_locator(plt.MaxNLocator(10))
     
     # plotting the points 
-    #plt.plot(days_list, confirm_list,'k', color='blue',label=y_formatter(max(confirm_list),0)+' '+'Positives') 
-    #plt.plot(days_list, death_list,'k', color='red', label=y_formatter(max(death_list),0)+' '+'Deaths') 
-    plt.stackplot(days_list,y_group, labels=[y_formatter(max(death_list),0)+' '+'Deaths',y_formatter(max(confirm_list),0)+' '+'Positives'], colors=['#EB1B4C','blue'], alpha=0.8 )
+    plt.plot(days_list, confirm_list,'k', color='blue', linewidth=0, label=y_formatter(max(confirm_list),0)+' '+'Positives', alpha=0.8) 
+    plt.plot(days_list, death_list,'k', color='#EB1B4C', linewidth=0, label=y_formatter(max(death_list),0)+' '+'Deaths', alpha=0.8) 
+    #plt.stackplot(days_list,y_group, labels=[y_formatter(max(death_list),0)+' '+'Deaths',y_formatter(max(confirm_list),0)+' '+'Positives'], colors=['#EB1B4C','blue'], alpha=0.8 )
 
+    plt.fill_between(days_list, confirm_list, color='blue',alpha=0.8)
+    plt.fill_between(days_list, death_list, color='#EB1B4C',alpha=0.8)
+    
     plt.xticks(days_list,rotation=75,fontsize=8)
 
     #enable and position legend
-    plt.legend() 
+    #plt.legend() 
+    leg = plt.legend()
+    # get the lines and texts inside legend box
+    leg_lines = leg.get_lines()
+    leg_texts = leg.get_texts()
+    # bulk-set the properties of all lines and texts
+    plt.setp(leg_lines, linewidth=4)
+    plt.setp(leg_texts, fontsize='medium')
     plt.legend(loc='upper left')   
     
     # naming the x axis 
