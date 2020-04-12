@@ -40,8 +40,8 @@ def covid_graph(country="PY"):
     ax.yaxis.set_major_locator(plt.MaxNLocator(10))
     
     # plotting the points 
-    plt.plot(days_list, confirm_list,'k', color='blue', linewidth=0, label=y_formatter(max(confirm_list),0)+' '+'Positives', alpha=0.8) 
-    plt.plot(days_list, death_list,'k', color='#EB1B4C', linewidth=0, label=y_formatter(max(death_list),0)+' '+'Deaths', alpha=0.8) 
+    plt.plot(days_list, confirm_list,'k', color='blue', label=y_formatter(max(confirm_list),0)+' '+'Positives', alpha=0.8) 
+    plt.plot(days_list, death_list,'k', color='#EB1B4C', label=y_formatter(max(death_list),0)+' '+'Deaths', alpha=0.8) 
     #plt.stackplot(days_list,y_group, labels=[y_formatter(max(death_list),0)+' '+'Deaths',y_formatter(max(confirm_list),0)+' '+'Positives'], colors=['#EB1B4C','blue'], alpha=0.8 )
 
     plt.fill_between(days_list, confirm_list, color='blue',alpha=0.8)
